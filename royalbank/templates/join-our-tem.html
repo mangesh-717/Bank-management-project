@@ -1,0 +1,100 @@
+{% extends 'home.html' %}
+
+{% block starts %}
+<style>
+    /* this is single part of footer which is not inherited from home */
+    .footer {
+    background-color: #0f1d2c;
+    color: white;
+    padding: 20px;
+    position: relative;
+        }
+
+        
+    /* Updated Styles with Unique Class Names */
+    .job-body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .job-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .job-header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1em 0;
+    }
+
+    .job-main {
+        margin: 20px 0;
+    }
+
+    .job-section {
+        margin-bottom: 40px;
+    }
+
+    .job-title {
+        color: #333;
+    }
+
+    .job-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .job-list-item {
+        background-color: #3a4c5a;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<body class="job-body">
+    <header class="job-header">
+        <div class="job-container">
+            <h1 class="job-title">Join Our Team</h1>
+        </div>
+    </header>
+
+    <main class="job-main">
+        <div class="job-container">
+            <section class="job-section job-opportunity">
+                <h2 class="job-title">We're Hiring!</h2>
+                <p>
+                    Join our dynamic team and grow with us. We are currently seeking passionate individuals who are eager to learn and contribute to our success. If you're ready to take on new challenges and advance your career, we want to hear from you!
+                </p>
+
+                <h3 class="job-title">Position: [Django Developer]</h3>
+                <p>
+                    We have an exciting opportunity for the position of django Developer. As a member of our team, you will be working on HTML, CSS, and JavaScript databases, especially with Django's ORM and Familiarity with integrating third-party libraries and APIs into Django projects.
+                </p>
+
+                <h3 class="job-title">Qualifications:</h3>
+                <ul class="job-list">
+                    <li class="job-list-item">Proficient in Python and Django framework.</li>
+                    <li class="job-list-item">Knowledge with front-end technologies such as HTML, CSS, and JavaScript.</li>
+                    <li class="job-list-item">Knowledge of ORM model and SQL.</li>
+                    <li class="job-list-item">Excellent problem-solving skills.</li>
+                    <li class="job-list-item"><strong>Language Proficiency:</strong> Fluent in English, both written and spoken.</li>
+                </ul>
+
+                <h3 class="job-title">How to Apply:</h3>
+                <p>
+                    To apply, please send your resume and cover letter to [mangeshsathe1353@gmail.com]. We look forward to reviewing your application.
+                </p>
+            </section>
+        </div>
+    </main>
+    
+    {% endblock %}
+

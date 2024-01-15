@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .load-more-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3e5a3e;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 7px;
+            &:hover {
+        background-color: #253837;
+         }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>{{name}} History</h1>
+</header>
+<h2>Display Last Transactions</h2>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <label for="num_transactions">Number of Last Transactions:</label>
+    <input type="number" id="num_transactions" name="num_transactions" min="1" required>
+    <button type="submit" class="load-more-btn">Display</button>
+</form>
+<main>
+    <table id="transaction-table">
+        <tr>
+            <th>Credited</th>
+            <th>Type</th>
+            <th>Debited</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>${{ i.Credited }}</td>
+            <td>{{ i.Transferred }}</td>
+            <td>${{ i.Debited }}</td>
+            <td>{{ i.date_field }}</td>
+            <td>{{ i.time_field }}</td>
+        </tr>
+    {% endfor %}
+    
+    </table>
+    
+</main>
+
+
+</body>
+</html>

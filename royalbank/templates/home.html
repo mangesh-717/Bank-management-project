@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  {% load static %}
+
+  <body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  
+
+    
+
+
+<style>
+     *{
+            margin: 0px;
+        }
+      
+
+
+
+
+
+        .navimg{
+            border-radius: 50%;
+            height: 50px;
+            width: 50px; 
+             
+        }
+        .navim{
+            padding-left: 20px;
+        }
+/* this is my foote  */
+   
+
+.footer a:hover,
+.column a:hover {
+    color: rgb(191, 151, 7);
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer li {
+    margin-bottom: 10px; /* Adjust margin for better spacing */
+}
+
+.social-icons {
+    margin-right: 10px;
+    font-size: 33px;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap; /* Allow columns to wrap to the next line on smaller screens */
+}
+
+.column {
+    flex: 1;
+    margin-right: 20px;
+    margin-bottom: 20px; /* Adjust margin for better spacing */
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .footer-columns {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+    }
+
+    .column {
+        flex: 1;
+        margin-right: 0;
+    }
+} 
+</style>
+<div class="main-content">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="navim">
+      <img src="{% static 'royalbank.jpeg' %}" alt="" class="navimg">
+  </div>
+  
+  
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Online banking/Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'loan'%}">Loan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'operations' %}">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'loginform' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'creadit' %}">creadit/debit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"href="{% url 'help' %}" aria-disabled="true">Help</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"href='{% url "About" %}' aria-disabled="true">About</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" method="post">
+        {% csrf_token %}
+        <input class="form-control me-2" name="searching" type="search" placeholder="Enter Your Username to Retrieve Your Account Number" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+
+
+
+
+{% block starts %}
+<style>
+/* this part single part of footer */
+.footer {
+    background-color: #0f1d2c;
+    color: white;
+    padding: 20px;
+    margin-top: 380px;
+
+} 
+
+
+/* background */
+body {
+    margin: 0;
+    padding: 0;
+    /* background-image: url('C:/Users/mange/OneDrive/Desktop/web/projects/bank2.jpg'); Replace with your image path */
+    background-image: url('{% static "bank3.jpg" %}'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center center; /* Adjust background position */
+    background-repeat: no-repeat;
+    height: 100vh;/* Ensure full viewport height*/
+  }
+
+  /* Create a semi-transparent overlay for the text */
+  .overlay {
+    position: absolute;
+
+    width: 100%;
+    /* height: 100%;  */
+    
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Style for the text on top of the image */
+  .overlay-text {
+    color: rgb(154, 150, 156);
+    font-size: 44px;
+    text-align: center;
+    text-align: center;
+
+    padding-top: 30px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.7);    
+  }
+ 
+
+
+
+
+       
+
+        .butt, .new_account {
+            padding-left: 55%; /* Adjust based on your design */
+            padding-top: 2%;  /* Adjust based on your design */
+        }
+
+        .starter, .new {
+            display: block;
+             width: 180%; /*Adjust based on your design */
+            max-width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+    border-radius: 32px;
+    border-color: aliceblue;
+    background-color: blueviolet;
+
+            text-align: center;
+        }
+.mt,.ma{
+    color: aliceblue;
+    font-size: 15px;
+
+
+}
+        @media (min-width: 768px) {
+            .starter, .new {
+                width: 60%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .starter, .new {
+                width: 40%;
+            }
+        }
+
+
+
+
+        /* this is my footer */
+
+
+</style>
+<body>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- navbar -->
+
+
+
+
+
+
+   
+
+
+
+<!-- items -->
+
+<div class="overlay">
+  <div class="overlay-text">
+    Welcome to Our Bank!
+  </div>
+  <div class="container">
+    <div class="butt">
+        <button class="starter"><a class="mt" href="{% url 'loginform' %}">GET STARTED</a></button>
+    </div>
+
+    <div class="new_account">
+        <button class="new"><a class="ma" href="{% url 'register' %}">Create New Account</a></button>
+    </div>
+</div>
+ 
+
+
+{% endblock %}
+<!-- Footer section -->
+ <div class="footer">
+    <div class="footer-columns">
+        <div class="column contact-column">
+            <h3><a  class="hover-link">Contact Us</a></h3>
+            <ul>
+                <li><a href="tel:+917218920354" class="hover-link">+917218920354</a></li>
+                <li><a href="mailto:mangeshsathe1353@gmail.com" class="hover-link">mangeshsathe1553@gmail.com</a></li>
+            </ul>
+        </div>
+        
+        <div class="column help-column">
+            <h3><a  class="hover-link">Help & FAQs</a></h3>
+            <ul>
+                <li><a href="{% url 'help' %}" class="hover-link">Customer Support</a></li>
+                <li><a href="{% url 'help' %}" class="hover-link">Report an Issue</a></li>
+                <li><a href="{% url 'help' %}" class="hover-link">Help Center</a></li>
+            </ul>
+        </div>
+
+        <div class="column social-media-column">
+            <h3><a  class="hover-link">Follow Us</a></h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/919503304741?text=Hello%20from%20your%20website!"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/mangesh-sathe-419368239"><i class="fab fa-linkedin"></i></a> 
+                <a href="mailto:mangeshsathe1353@gmail.com" class="hover-link">
+                  <i class="far fa-envelope"></i>
+              </a>
+            </div>
+        </div>
+
+        <div class="column careers-column">
+            <h3><a  class="hover-link">Careers</a></h3>
+            <p>Join our team and grow with us. <a href="{% url 'carrier' %}" class="hover-link">Learn more</a></p>
+        </div>
+    </div>
+    
+      <p>&copy; 2024 Royal Bank. All rights reserved. | Terms of Use:-
+      <p>Login is required for certain services. Before applying for a loan, credit card, debit card, or managing your account, please <a href="{% url 'loginform' %}">log in</a> or <a href="{% url 'register' %}">register</a> if you don't have an account yet.</p>
+</p>
+</div>
+
+<!-- Font Awesome icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>

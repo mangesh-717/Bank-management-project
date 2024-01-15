@@ -1,0 +1,191 @@
+{% extends 'home.html' %}
+
+{% block starts %}
+ 
+     <style> 
+/* this is small part of footer css which can't be inherited from home.html */
+ .footer {
+    background-color: #0f1d2c;
+    color: white;
+    padding: 20px;
+    position: relative;
+    margin-top: 40px;
+        }
+
+.main-content {
+    margin-bottom: 20px; /* Adjust as needed */
+}  */
+
+
+
+
+
+
+          body {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust as needed */
+            background-color: #767171;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        } 
+
+        .login-container {
+            background-color: #023250;
+            margin-top: 10px;
+            margin-left: 110px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            
+        }
+
+        .login-container h2 {
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #493a72;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #323338;
+        }
+        /* p{color: black;} */
+
+
+/* error messaging  */
+
+        .messages-error,
+    .messages-success {
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        margin-top: 30px;
+    }
+    
+    .messages-error {
+        background-color: rgb(230, 104, 104);
+        color: white;
+
+        margin-right: 5%; /* Adjust as needed for right margin */
+        padding-right: 5%; /* Adjust as needed for right padding */
+    }
+    .messages-success {
+        background-color: rgb(171, 255, 207);
+        color: rgb(7, 3, 3);
+        z-index: 1000; /* Ensure it appears above other elements */
+    }
+    
+    .messages-container {
+        height: 20px;
+        text-align: center;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 10px;
+    }
+    
+    
+    .have{
+        color: black;
+    }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    
+    <!-- succes and error message -->
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <h5 class="{% if message.tags == 'success' %}messages-success{% elif message.tags == 'error' %}messages-error{% endif %}">
+                {{ message }} <span class="close-btn" onclick="closeMessage(this)">x</span>
+            </h5>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          setTimeout(function () {
+              var messagesContainer = document.querySelector('.messages-container');
+              if (messagesContainer) {
+                  messagesContainer.style.display = 'none';
+              }
+          }, 5000);
+      });
+    
+      function closeMessage(element) {
+          element.parentElement.style.display = 'none';
+      }
+    </script>
+
+
+
+
+
+
+
+
+   
+         <div class="login-container">
+        <h2>Login</h2> 
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+            {{ form.Email.label_tag }}
+            {{ form.Email }}
+            </div>
+            <div class="form-group">
+                {{ form.username.label_tag }}
+            {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+            <p class="have">Don't have account <a href="{% url 'register' %}"><br>Register</a></p>
+
+            <div class="form-group">
+                <input type="submit" value="submit"> 
+            </div>
+        </form>  
+</div>
+      </body>  
+{% endblock %}

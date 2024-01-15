@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Borel&family=Bungee+Spice&display=swap');
+    *{
+        margin: 0px;
+       
+    }
+    .card{
+        height:400px;
+    width: 700px;
+    background-color:rgb(11, 1, 7);
+    position: absolute;
+ top: 100px;
+left: 100px; 
+display: flex;
+border-radius: 30px;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+box-shadow: 10px 1px 20px 10px rgb(107, 56, 56);
+    }
+    h1{
+        color:bisque;
+        font-size:40px;
+       font-family: 'Borel', cursive; 
+    }
+    h1{
+        background-size:100%;
+        color: rgb(53, 112, 164);
+        /* padding-top: ; */
+    }
+    .card:hover{
+    transition: all 1s ease-in-out;        
+transform: skew(-40deg);
+rotate: 360deg;
+scale:1.2;
+translate:200px;
+}
+    h2{
+        font-size: 70px; 
+        color: rgb(184, 190, 190);
+        /* font-family: 'Borel', cursive; */
+/* font-family: 'Bungee Spice', cursive; */
+    }
+    .Ma{
+        color: rgb(181, 9, 9);
+    }
+    .exp{color: aquamarine;
+    /* text-align: left; */
+    padding-right: 600px;
+    font-size: 20px;}
+    .visa{
+        height: 40px;
+        width: 60px;
+        padding-left: 40px;
+    }
+    .goldan{
+        height: 40px;
+        width: 60px;
+        /* padding-right: 500px; */
+        border-radius: 10px;
+    }
+    .size{
+        padding-right: 500px;
+
+    }
+    .creadit{
+        color: rgb(231, 19, 178);
+        /* font-size: 90px; */
+        padding-left: 300px;
+    }
+.name{color: aliceblue;
+    padding-right: 400px;
+    padding-bottom: 10px;
+font-size: 20px;}
+
+.cr-container {
+        position: absolute;
+        bottom: 2vw; /* Use a relative unit for bottom margin */
+        left: 10vw; /* Use a relative unit for left margin */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cr {
+        margin-top: 1vw; /* Use a relative unit for top margin */
+        height: 4vw; /* Use a relative unit for height */
+        width: 20vw; /* Use a relative unit for width */
+        border-radius: 2.2vw; /* Use a relative unit for border-radius */
+        background-color: rgb(18, 42, 43);
+        color: aliceblue;
+        cursor: pointer;
+    }
+</style>
+</head>
+{% load static %}
+
+<body>
+    <div class="card">
+   <h1> 
+    <p class="Creadit">Creadit Card</p>
+ 
+    <span class="Ma">Ro</span>yal Bank</h1> <br>
+   <p class="exp"> val-<br>
+    1/2024<br>8/2025    </p>
+   <div class="size"> <img class="goldan" src='{% static "goldanchip.jpeg" %}' alt=""></div>
+   <h2>4121-****-**89    <img class="visa" src='{% static "visa.jpeg" %}' alt="">
+   </h2>
+   <p class="name">Mangesh.s</p>
+<!-- <h1>tyvubjnklm</h1> -->
+    </div>
+    <div class="cr-container">
+        <a href="{% url 'creaditform' %}"><button class="cr"  >  Apply for new creadit </button></a>
+        <a href="{% url 'creaditform' %}"><button class="cr"> Apply for new debit </button></a>
+    </div>
+    
+</body>
+</html>

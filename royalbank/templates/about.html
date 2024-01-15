@@ -1,0 +1,102 @@
+{% extends 'home.html' %}
+
+{% block starts %}
+ 
+<style>
+   /* this is single part of footer which is not inherited from home */
+   .footer {
+    background-color: #0f1d2c;
+    color: white;
+    padding: 20px;
+    position: relative;
+        }
+
+
+/* this is your remained body */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #a7a3a3;
+        color: #333;
+    }
+
+    .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .about-header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1em 0;
+    }
+
+    .about-main {
+        margin: 20px 0;
+    }
+
+    .about-section {
+        margin-bottom: 40px;
+    }
+
+    .about-title {
+        color: #333;
+    }
+
+    .about-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .about-list-item {
+        background-color: #364956;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <header class="about-header">
+        <div class="about-container">
+            <h1>About Us</h1>
+        </div>
+    </header>
+
+    <main class="about-main">
+        <div class="about-container">
+            <section class="about-section">
+                <h2 class="about-title">Bank Management Project</h2>
+                <p>
+                    Welcome to our innovative Bank Management Project! Our mission is to revolutionize the banking experience by providing a seamless and user-friendly platform for all financial needs. Developed by [Your Name], a BSc Software Engineering student at COCSIT College, this project encompasses advanced features, including transaction management, loan options, help desk services, and real-time user notifications.
+                </p>
+            </section>
+
+            <section class="about-section">
+                <h2 class="about-title">Skills</h2>
+                <ul class="about-list">
+                    <li class="about-list-item">Python</li>
+                    <li class="about-list-item">Django</li>
+                    <li class="about-list-item">SQL</li>
+                    <li class="about-list-item">Data Structures</li>
+                    <li class="about-list-item">HTML</li>
+                    <li class="about-list-item">CSS</li>
+                    <li class="about-list-item">Bootstrap</li>
+                    <li class="about-list-item">APIs</li>
+                </ul>
+            </section>
+
+            <section class="about-section">
+                <h2 class="about-title">Introduction</h2>
+                <p>
+                    I am a passionate software engineering student, currently in the final year at COCSIT College. My journey in the world of technology has been enriched through internships at CodeSoft and CodeClause. This project reflects my dedication to Python, Django, and cutting-edge web development. Join us on this exciting venture towards redefining the future of banking technology!
+                </p>
+            </section>
+        </div>
+    </main>
+</body>
+{% endblock %}

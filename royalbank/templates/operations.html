@@ -1,0 +1,266 @@
+{% extends "home.html" %}
+{% block starts %}
+
+     <style>
+   /* this is single part of footer which is not inherited from home */
+   .footer {
+    background-color: #0f1d2c;
+    color: white;
+    padding: 20px;
+    position: relative;
+        }
+
+/* this is your remained */
+         body {
+             font-family: Arial, sans-serif;
+             margin: 0;
+             padding: 0;
+             background-color: #f4f4f4;
+         }
+ 
+         header {
+             background-color: #333;
+             color: #fff;
+             text-align: center;
+             padding: 0.5em 0;
+         }
+ 
+         main {
+             max-width: 800px;
+             margin: 20px auto;
+             padding: 20px;
+             background-color: #fff;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         }
+ 
+         h2 {
+             color: #333;
+         }
+ 
+         .balance {
+             font-size: 1.5em;
+             margin-bottom: 20px;
+         }
+ 
+         .transaction-history {
+             margin-top: 20px;
+         }
+ 
+         .transaction {
+             margin-bottom: 10px;
+         }
+ 
+         .transaction form {
+             display: inline-block;
+         }
+ 
+         button {
+             padding: 5px 10px;
+             background-color: #222843;
+             color: #fff;
+             border-radius: 7px;
+             border: none;
+             cursor: pointer;
+             &:hover {
+        background-color: #465251; /* Adjust the color as needed */
+    }
+         }
+ 
+         input {
+             padding: 5px;
+             border-radius: 3px;
+         }
+ 
+         select {
+             padding: 5px;
+         }
+ 
+         .transfer-form {
+             margin-top: 20px;
+         }
+ 
+         .transfer-form label {
+             display: block;
+             margin-bottom: 5px;
+         }
+ 
+         .transfer-form input,
+         .transfer-form select {
+             width: 100%;
+             margin-bottom: 10px;
+         }
+ 
+         .transfer-form button {
+             width: 100%;
+         }
+         .history{
+            padding: 7px 10px;
+             background-color: #015e59;
+             color: hsl(0, 0%, 100%);
+             border: none;
+             cursor: pointer;
+             border-radius: 5px;
+         
+         &:hover {
+        background-color: #253837; /* Adjust the color as needed */
+    }
+         }
+         .tttt{
+            padding: 7px 10px;
+             background-color: #015e59;
+             color: hsl(0, 0%, 100%);
+             border-radius: 5px;
+         &:hover {
+        background-color: #253837;
+         }}
+
+
+
+
+         /* this is error messages  */
+         /* error messaging  */
+
+        .messages-error,
+    .messages-success {
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        margin-top: 30px;
+    }
+    
+    .messages-error {
+        background-color: rgb(230, 104, 104);
+        color: white;
+
+        margin-right: 5%; /* Adjust as needed for right margin */
+        padding-right: 5%; /* Adjust as needed for right padding */
+    }
+    .messages-success {
+        background-color: rgb(171, 255, 207);
+        color: rgb(7, 3, 3);
+        z-index: 1000; /* Ensure it appears above other elements */
+    }
+    
+    .messages-container {
+        height: 20px;
+        text-align: center;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 10px;
+    }
+    
+    
+    .have{
+        color: black;
+    }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    
+    <!-- succes and error message -->
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <h5 class="{% if message.tags == 'success' %}messages-success{% elif message.tags == 'error' %}messages-error{% endif %}">
+                {{ message }} <span class="close-btn" onclick="closeMessage(this)">x</span>
+            </h5>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          setTimeout(function () {
+              var messagesContainer = document.querySelector('.messages-container');
+              if (messagesContainer) {
+                  messagesContainer.style.display = 'none';
+              }
+          }, 5000);
+      });
+    
+      function closeMessage(element) {
+          element.parentElement.style.display = 'none';
+      }
+    </script>
+
+
+
+    <!-- this is nav -->
+    
+ 
+ <header>
+     <h1>My Banking Dashboard</h1>
+ </header>
+ 
+ <main>
+     <h2>Welcome {{ name }}</h2>
+     <p>Balance: {{ dbalance }}</p>
+
+ <br>
+ <a class="tttt" href="{% url 'results' %}" >Transaction History:</a> <br><br>
+     <div class="balance">
+         <h2>Balance Operations</h2><br>
+         <div class="transaction">
+            <form  method="post">
+                {% csrf_token %}
+                 <label >Credit Amount:</label>
+                 <input type="text"  name="creditAmount" placeholder="Enter amount">
+                 <button type="submit" >Credit</button>
+             </form>
+            
+ <br><br>
+ 
+ <div class="transaction">
+    <form  method="post">
+        {% csrf_token %}
+         <label >Debit Amount:</label>
+         <input type=""  name="debitAmount" placeholder="Enter amount">
+         <button type="submit" >Debit</button>
+     </form>
+           
+       
+     </div><br>
+
+ <br>
+ <form action="" method="post">
+    {% csrf_token %}
+
+    {{ Emi }}
+    
+     <button class="history" type="submit" name="Emipayed">Pay EMI:</button>
+  </form>
+     <br><br>
+     <div class="transfer-form">
+         <h2>Transfer Money</h2>
+         <form id="transferForm" method="post">
+            {% csrf_token %}
+
+             <label for="transferAmount">Amount:</label>
+             <input type="text" id="transferAmount" name="transferAmount" placeholder="Enter amount" required>
+ 
+             <label for="recipientAccount">Recipient account No:</label>
+             <input type="text" id="recipientAccount" name="recipientAccount" placeholder="Enter account No" required>
+             
+             <label for="recipientAccount">Recipient Email ID:</label>
+             <input type="text" id="recipientAccount" name="recipientEmail" placeholder="Enter email id" required>
+ 
+             <button type="submit" >Transfer</button>
+         </form>
+     </div>
+ </main>
+ 
+ 
+
+{% endblock %}

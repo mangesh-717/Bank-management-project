@@ -1,0 +1,208 @@
+<!-- loan/templates/loan/loan_request_form.html -->
+{% extends 'home.html' %}
+
+{% block starts %}
+{% load static %}
+ 
+<style>
+   /* this is single part of footer which is not inherited from home */
+   .footer {
+    background-color: #0f1d2c;
+    color: white;
+    padding: 20px;
+    position: relative;
+        }
+
+
+   /* Apply a CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    
+    font-family: Arial, sans-serif;
+      background-image: url('{% static "bank3.jpg" %}'); /* Replace with your image path */
+      background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; /* Adjust background position */
+    
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+/* Main Content Styles */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* Loan Form Styles */
+.loan-form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #015e59;
+    color: #ffffffc3;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d48;
+}
+
+
+
+/* error messages  */
+        .messages-error,
+    .messages-success {
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        margin-top: 30px;
+    }
+    
+    .messages-error {
+        background-color: rgb(230, 104, 104);
+        color: white;
+
+        margin-right: 5%; /* Adjust as needed for right margin */
+        padding-right: 5%; /* Adjust as needed for right padding */
+    }
+    .messages-success {
+        background-color: rgb(171, 255, 207);
+        color: rgb(7, 3, 3);
+        z-index: 1000; /* Ensure it appears above other elements */
+    }
+    
+    .messages-container {
+        height: 20px;
+        text-align: center;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 10px;
+    }
+    
+    
+    
+</style>
+<body>
+   <!-- succes and error message -->
+   {% if messages %}
+   <div class="messages-container">
+       {% for message in messages %}
+           <h5 class="{% if message.tags == 'success' %}messages-success{% elif message.tags == 'error' %}messages-error{% endif %}">
+               {{ message }} <span class="close-btn" onclick="closeMessage(this)">x</span>
+           </h5>
+       {% endfor %}
+   </div>
+   {% endif %}
+   
+   <script>
+     document.addEventListener('DOMContentLoaded', function () {
+         setTimeout(function () {
+             var messagesContainer = document.querySelector('.messages-container');
+             if (messagesContainer) {
+                 messagesContainer.style.display = 'none';
+             }
+         }, 5000);
+     });
+   
+     function closeMessage(element) {
+         element.parentElement.style.display = 'none';
+     }
+   </script>
+
+
+
+
+
+    <header>
+        <h1>Loan Request Form</h1>
+    </header>
+
+    <main>
+        <section class="loan-form">
+            <form method="post">
+                {% csrf_token %}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    {{ form.Username.label_tag }}
+                    {{ form.Username }}
+                    </div>
+                    <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.amount.label_tag }}
+                    {{ form.amount }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.Loan_Tenure.label_tag }}
+                    {{ form.Loan_Tenure }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.purpose.label_tag }}
+                    {{ form.purpose }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.message.label_tag }}
+                        {{ form.message }}
+                    </div>
+
+                <button type="submit">Submit Request</button>
+            </form><br>
+
+
+
+            <!-- <div class="transaction"> -->
+                <form  method="post">
+                    {% csrf_token %}
+            <button type="submit" name="debitAmount" >Pay Loan</button>
+</form>
+        </section>
+    </main>
+
+    
+{% endblock %}

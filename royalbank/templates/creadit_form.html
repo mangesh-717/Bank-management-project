@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Debit/Credit Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b25b5b;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            
+
+
+            font-family: Arial, sans-serif;
+      background-image: url('{% static "bank3.jpg" %}'); /* Replace with your image path */
+      background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; /* Adjust background position */
+    
+        }
+
+        form {
+            background-color: #cfb2d3;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 110px rgba(22, 17, 17, 0.1);
+            width: 300px;
+        }
+
+         .form-group {
+            margin-bottom: 8px;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            /* color: #fff; */
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cecbcb;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+       
+
+        button {
+            background-color: #253126;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+
+
+
+
+
+        .messages-error,
+.messages-success {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.messages-error {
+    background-color: rgb(230, 104, 104);
+    color: white;
+    margin-right: 5%; /* Adjust as needed for right margin */
+    padding-right: 5%; /* Adjust as needed for right padding */
+}
+.messages-success {
+    background-color: rgb(171, 255, 207);
+    color: rgb(7, 3, 3);
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.messages-container {
+    height: 20px;
+    text-align: center;
+    font-size: 16px;
+    position: fixed;
+    width: 100%;
+    top: 10px;
+}
+
+
+    </style>
+</head>
+<body>
+
+<!-- succes and error message -->
+{% if messages %}
+<div class="messages-container">
+    {% for message in messages %}
+        <h5 class="{% if message.tags == 'success' %}messages-success{% elif message.tags == 'error' %}messages-error{% endif %}">
+            {{ message }} <span class="close-btn" onclick="closeMessage(this)">x</span>
+        </h5>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(function () {
+          var messagesContainer = document.querySelector('.messages-container');
+          if (messagesContainer) {
+              messagesContainer.style.display = 'none';
+          }
+      }, 5000);
+  });
+
+  function closeMessage(element) {
+      element.parentElement.style.display = 'none';
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+<form method="post" >
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="">Username:</label>
+        <input type="text" name="username">
+        </div>
+    <div class="form-group">
+        <label for="">Email:</label>
+        <input type="email" name="email">
+        </div>
+        
+        <br>
+        <label>Card Type:</label><br><br>
+        <div class="checkbox-group">
+            <label for="credit">Credit Card:</label>
+            <input type="checkbox" id="credit" name="credit" value="credit">
+        </div>
+        
+        <div class="checkbox-group">
+            <label for="debit">Debit Card:</label>
+            <input type="checkbox" id="debit" name="debit" value="debit">
+        </div>
+        <p>Don't have account <a href="{% url 'register' %}"><br>Register</a></p>
+    <button type="submit">Apply Now</button>
+</form>
+
+</body>
+</html>
